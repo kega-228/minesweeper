@@ -62,30 +62,30 @@ int main(){
 	printDesk(desk2, sizeX, sizeY );
 	bool gameover = false, win = false;
 	while (!gameover && !win) {
-		int x, y;
+		cords cor;
 		cout << cord;
-		cin >> x;
-		if (x == -1) {
+		cin >> cor.x;
+		if (cor.x == -1) {
 			cout << cf << (mines - flags) << "\n";
 			cout << cordf;
-			cin >> x >> y;
-			if (x < 0 || x >= sizeY || y < 0 || y >= sizeX) {
+			cin >> cor.x >> cor.y;
+			if (cor.x < 0 || cor.x >= sizeY || cor.y < 0 || cor.y >= sizeX) {
 				cout << icord;
 				continue;
 			}
-			setFlag(desk2, x, y, sizeX, sizeY, flags, mines, fc, nofleft);
+			setFlag(desk2, cor.x, cor.y, sizeX, sizeY, flags, mines, fc, nofleft);
 			continue;
 		}
-		cin	>> y;
-		if (x < 0 || x >= sizeY || y < 0 || y >= sizeX) {
+		cin	>> cor.y;
+		if (cor.x < 0 || cor.x >= sizeY || cor.y < 0 || cor.y >= sizeX) {
 			cout << icord;
 			continue;
 		}
-		if (desk2[y][x] != '#') {
+		if (desk2[cor.y][cor.x] != '#') {
 			cout << fc;
 			continue;
 		}
-		openCell(desk, desk2, x, y, sizeX, sizeY, gameover);
+		openCell(desk, desk2, cor.x, cor.y, sizeX, sizeY, gameover);
 		printDesk(desk2, sizeX, sizeY);
 		win = checkWin(desk, desk2, sizeX, sizeY);
 	}
