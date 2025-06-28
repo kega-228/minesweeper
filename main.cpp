@@ -3,6 +3,9 @@
 #include "start.h"
 #include "Game.h"
 #include "lang.h"
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 int main(){
@@ -95,6 +98,17 @@ int main(){
 	}
 	else {
 		cout << congrat;
+	}
+	ofstream out("score.txt", ios::app);
+	if (out.is_open()) {
+		out << "Size: " << sizeX << " x " << sizeY << "\n";
+		out << "Mines: " << mines << "\n";
+		out << "Flags used: " << flags << "\n";
+		if (win) {
+			out << "Result: Win\n";
+		} else {
+			out << "Result: Lose\n";
+		}
 	}
 	for (int i = 0; i < sizeX; i++) {
 		delete[] desk[i];
